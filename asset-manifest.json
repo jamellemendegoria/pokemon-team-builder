@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/pokemon-team-builder/static/css/main.c213f924.chunk.css",
+    "main.js": "/pokemon-team-builder/static/js/main.add61bdb.chunk.js",
+    "main.js.map": "/pokemon-team-builder/static/js/main.add61bdb.chunk.js.map",
+    "runtime-main.js": "/pokemon-team-builder/static/js/runtime-main.0bba15e3.js",
+    "runtime-main.js.map": "/pokemon-team-builder/static/js/runtime-main.0bba15e3.js.map",
+    "static/js/2.59a21011.chunk.js": "/pokemon-team-builder/static/js/2.59a21011.chunk.js",
+    "static/js/2.59a21011.chunk.js.map": "/pokemon-team-builder/static/js/2.59a21011.chunk.js.map",
+    "static/js/3.8e4bc127.chunk.js": "/pokemon-team-builder/static/js/3.8e4bc127.chunk.js",
+    "static/js/3.8e4bc127.chunk.js.map": "/pokemon-team-builder/static/js/3.8e4bc127.chunk.js.map",
+    "index.html": "/pokemon-team-builder/index.html",
+    "static/css/main.c213f924.chunk.css.map": "/pokemon-team-builder/static/css/main.c213f924.chunk.css.map",
+    "static/js/2.59a21011.chunk.js.LICENSE.txt": "/pokemon-team-builder/static/js/2.59a21011.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0bba15e3.js",
+    "static/js/2.59a21011.chunk.js",
+    "static/css/main.c213f924.chunk.css",
+    "static/js/main.add61bdb.chunk.js"
+  ]
+}
