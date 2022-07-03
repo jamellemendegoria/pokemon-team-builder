@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Paper } from '@mui/material';
+
 import DefensivePopover from './popovers/DefensivePopover';
 import OffensivePopover from './popovers/OffensivePopover';
 
@@ -71,7 +73,7 @@ function TypeChart(props) {
   });
 
   return (
-    <div
+    <Paper
       className={
         'type-chart-container' +
         (props.name === 'Defensive'
@@ -81,7 +83,7 @@ function TypeChart(props) {
     >
       <h2 className="type-chart-heading">{`${props.name} Coverage`}</h2>
       <ul className="type-chart">{chart}</ul>
-    </div>
+    </Paper>
   );
 }
 
