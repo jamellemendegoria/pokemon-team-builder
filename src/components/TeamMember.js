@@ -1,106 +1,172 @@
 import React, { useState } from 'react';
+import styled from '@emotion/styled';
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Button,
+  Collapse,
+  Autocomplete,
+  TextField,
+} from '@mui/material';
+
 import { formatAllMoves, formatAllPokemon, removeFormatting } from '../helpers';
 
+/* STYLED COMPONENTS */
+
+const StyledCard = styled(Card)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5em;
+`;
+
+const StyledCardMedia = styled(CardMedia)`
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+`;
+
+const StyledCardContent = styled(CardContent)`
+  padding: 0;
+
+  :last-child {
+    padding: 0;
+  }
+`;
+
+const StyledCollapse = styled(Collapse)`
+  width: 100%;
+`;
+
+const StyledAutocomplete = styled(Autocomplete)`
+  margin-top: 0.5em;
+`;
+
+const StyledButton = styled(Button)`
+  background-color: #464646;
+  font-size: 12px;
+
+  :hover {
+    background-color: #585858;
+  }
+`;
+
 function TeamMember(props) {
-  const [name, setName] = useState(props.data ? props.data.name.charAt(0).toUpperCase() + props.data.name.slice(1) : '');
+  const [name, setName] = useState(
+    props.data
+      ? props.data.name.charAt(0).toUpperCase() + props.data.name.slice(1)
+      : ''
+  );
   const [isShowingMoves, setIsShowingMoves] = useState(false);
   const [moves, setMoves] = useState(Array(4).fill(''));
 
-  const pokemonList = formatAllPokemon(props.pokemonList).map((pokemon, index) => 
-    <option
-      key={index}
-      value={pokemon}/>
-  );
-
-  let moveInputs = [];
-  for (let i = 0; i < moves.length; i++) {
-    moveInputs.push(
-      <input
-        key={i}
-        value={moves[i]}
-        placeholder={`Move #${i + 1}...`}
-        list={`moves-${props.index}`}
-        onChange={(e) => handleMoveChange(i, e)}
-        className="team-member-move-input" />
-    );
-  }
-
-  function handleChange(e) {
-    setName(e.target.value);
+  function handleChange(e, value) {
+    setName(value);
     // Resets moves
     let temp = [...moves];
     for (let i = 0; i < moves.length; i++) {
       temp[i] = '';
     }
     setMoves(temp);
-    props.onTeamChange(removeFormatting(e.target.value), props.index);
+    props.onTeamChange(removeFormatting(value), props.index);
+  }
 
-  }
-  function handleMoveChange(index, e) {
+  function handleMoveChange(index, e, value) {
     let tempMoves = [...moves];
-    tempMoves[index] = e.target.value;
+    tempMoves[index] = value;
     setMoves(tempMoves);
-    props.onMoveChange(removeFormatting(e.target.value), props.index, index);
+    props.onMoveChange(removeFormatting(value), props.index, index);
   }
+
   function handleClick() {
     setIsShowingMoves(!isShowingMoves);
   }
 
   return (
-    <li className="team-member">
-      {props.data ?
-        <img
-          src={props.data.sprites.other['official-artwork'].front_default}
-          alt={props.data.name}
-          className={`team-member-img ${props.data.types[0].type.name}-bg`}/>
-        :
-        <div className="team-member-placeholder">?</div>
-      }
-      <input
-        value={name}
-        placeholder="Pokémon name..."
-        spellCheck="false"
-        list="pokemon"
-        onChange={handleChange}
-        className="team-member-name-input"/>
-      <datalist id="pokemon">
-        {pokemonList}
-      </datalist>
-      <ul className="team-member-types-list">
-        {props.data ?
-          <>
-            {props.data.types.map(type => 
-              <li key={type.slot} className={`team-member-type ${type.type.name}-text`}>
-                {type.type.name}
-                <span style={{ color: '#464646'}}>
-                  {props.data.types.length === 2 && props.data.types.indexOf(type) === 0 ? '/' : ''}
-                </span>
-              </li>
-            )}
-          </>
-        : <li key="0">???</li>
-        } 
-      </ul>
-      <button
-        onClick={handleClick}
-        className="team-member-moves-btn">
-        {isShowingMoves ? 'Hide' : 'Moves'}
-      </button>
-      <div className="team-member-moves-wrapper">
-      {isShowingMoves &&
-        <div className="team-member-moves-container">
-          {moveInputs}
-          <datalist id={`moves-${props.index}`}>
-            {props.data &&
-              (formatAllMoves(props.data.moves).filter(move => !moves.includes(move))
-              .map((move, index) => 
-                <option key={index} value={move} />
-              ))
-            }
-          </datalist>
-        </div>
-      }
-      </div>
+    <li>
+      <StyledCard>
+        {props.data ? (
+          <StyledCardMedia
+            component="img"
+            image={props.data.sprites.other['official-artwork'].front_default}
+            alt={props.data.name}
+          />
+        ) : (
+          // <img
+          //   src={props.data.sprites.other['official-artwork'].front_default}
+          //   alt={props.data.name}
+          //   className={`team-member-img ${props.data.types[0].type.name}-bg`}
+          // />
+          <div className="team-member-placeholder">?</div>
+        )}
+        <StyledAutocomplete
+          inputValue={name}
+          fullWidth
+          size="small"
+          options={formatAllPokemon(props.pokemonList)}
+          renderInput={(params) => (
+            <TextField {...params} label="Pokémon name..." />
+          )}
+          onInputChange={handleChange}
+        />
+        <ul className="team-member-types-list">
+          {props.data ? (
+            <>
+              {props.data.types.map((type) => (
+                <li
+                  key={type.slot}
+                  className={`team-member-type ${type.type.name}-text`}
+                >
+                  {type.type.name}
+                  <span style={{ color: '#464646' }}>
+                    {props.data.types.length === 2 &&
+                    props.data.types.indexOf(type) === 0
+                      ? '/'
+                      : ''}
+                  </span>
+                </li>
+              ))}
+            </>
+          ) : (
+            <li key="0">???</li>
+          )}
+        </ul>
+        <CardActions>
+          <StyledButton
+            variant="contained"
+            disabled={!props.data}
+            onClick={handleClick}
+          >
+            {isShowingMoves ? 'Hide' : 'Moves'}
+          </StyledButton>
+        </CardActions>
+        <StyledCollapse in={isShowingMoves}>
+          <StyledCardContent>
+            {moves.map((move, i) => (
+              <StyledAutocomplete
+                key={i}
+                inputValue={move}
+                fullWidth
+                size="small"
+                options={
+                  props.data
+                    ? formatAllMoves(props.data.moves).filter(
+                        // removes moves already selected
+                        (move) => !moves.includes(move)
+                      )
+                    : []
+                }
+                renderInput={(params) => (
+                  <TextField {...params} label={`Move #${i + 1}...`} />
+                )}
+                onInputChange={(e, value) => handleMoveChange(i, e, value)}
+              />
+            ))}
+          </StyledCardContent>
+        </StyledCollapse>
+      </StyledCard>
     </li>
   );
 }
