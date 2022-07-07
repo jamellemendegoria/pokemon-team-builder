@@ -190,54 +190,11 @@ ul {
   grid-template-columns: repeat(6, 1fr);
   gap: 10px;
 }
-.team-member-img {
-  width: 125px;
-  height: 125px;
-  border-radius: 50%;
-}
-.team-member-placeholder {
-  width: 125px;
-  height: 125px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 36px;
-}
 .team-member-name-input {
   margin-top: 0.5em;
   width: 125px;
   color: #464646;
   font-size: 16px;
-}
-.team-member-name-input::placeholder,
-.team-member-move-input::placeholder {
-  color: #909090;
-  font-size: 12px;
-  text-transform: none;
-}
-.team-member-types-list {
-  display: flex;
-  margin-top: 0.5em;
-}
-.team-member-type {
-  text-transform: capitalize;
-}
-.team-member-moves-wrapper {
-  display: flex;
-  justify-content: center;
-}
-.team-member-moves-container {
-  margin: 0;
-  padding: 0.5em;
-  position: absolute;
-  width: 100%;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  border-radius: 5px;
-  z-index: 1;
 }
 .team-member-move-input {
   margin-top: 0.5em;
@@ -246,50 +203,9 @@ ul {
   font-size: 12px;
 }
 /* || TYPE CHART */
-.type-chart-container {
-  margin-top: 1em;
-  background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  text-align: center;
-  border-radius: 5px;
-}
-.type-chart-heading {
-  margin-bottom: 1em;
-  padding-top: 1em;
-  font-size: 24px;
-}
-.type-chart {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-}
-.type {
-  position: relative;
-}
-.type-label {
-  position: relative;
-  margin: 0 1em;
-  color: #fff;
-  text-transform: capitalize;
-  border-radius: 5px;
-  font-size: 16px;
-}
 .damage-value {
   margin: 1em 0;
   font-size: 16px;
-}
-/* || POPOVER */
-.popover {
-  padding: 1em;
-  position: absolute;
-  z-index: 1;
-  background-color: #fff;
-  width: max-content;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-}
-.popover-heading {
-  margin-bottom: 0.5em;
-  font-size: 18px;
 }
 /* || MEDIA QUERIES */
 @media screen and (max-width: 1030px) {

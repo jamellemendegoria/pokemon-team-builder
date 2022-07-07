@@ -1,7 +1,18 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import { Popover } from '@mui/material';
 
 import { capitalize, formatMove } from '../../helpers';
+
+/* STYLED COMPONENTS */
+const StyledContainer = styled.div`
+  padding: 1em;
+
+  & h3 {
+    margin-bottom: 0.5em;
+    font-size: 18px;
+  }
+`;
 
 function OffensivePopover(props) {
   return (
@@ -14,49 +25,51 @@ function OffensivePopover(props) {
       anchorEl={props.anchorEl}
       onClose={props.onClose}
       anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'left',
+        vertical: 'top',
+        horizontal: 'center',
       }}
       transformOrigin={{
-        vertical: 'top',
-        horizontal: 'left',
+        vertical: 'bottom',
+        horizontal: 'center',
       }}
       disableRestoreFocus
     >
-      {props.team.every((member) => !member.data) ? (
-        <p>Please select a Pokémon.</p>
-      ) : (
-        <>
-          <h3 className="popover-heading">
-            {`Super effective against `}
-            <span className={`${props.name}-text`}>
-              {capitalize(props.name)}
-            </span>
-          </h3>
-          <ul>
-            {props.team.map((member, teamIndex) => {
-              return (
-                member.data &&
-                member.moves
-                  .filter(
-                    (move) =>
-                      move.data &&
-                      move.damage &&
-                      move.damage.hasOwnProperty(props.name)
-                  )
-                  .map((move, moveIndex) => (
-                    <li key={`member-${teamIndex}-move-${moveIndex}`}>
-                      <span className={`${move.data.type.name}-text bold`}>
-                        {formatMove(move.data.name)}
-                      </span>
-                      {` - ${capitalize(member.data.name)}`}
-                    </li>
-                  ))
-              );
-            })}
-          </ul>
-        </>
-      )}
+      <StyledContainer>
+        {props.team.every((member) => !member.data) ? (
+          <p>Please select a Pokémon.</p>
+        ) : (
+          <>
+            <h3>
+              {`Super effective against `}
+              <span className={`${props.name}-text`}>
+                {capitalize(props.name)}
+              </span>
+            </h3>
+            <ul>
+              {props.team.map((member, teamIndex) => {
+                return (
+                  member.data &&
+                  member.moves
+                    .filter(
+                      (move) =>
+                        move.data &&
+                        move.damage &&
+                        move.damage.hasOwnProperty(props.name)
+                    )
+                    .map((move, moveIndex) => (
+                      <li key={`member-${teamIndex}-move-${moveIndex}`}>
+                        <span className={`${move.data.type.name}-text bold`}>
+                          {formatMove(move.data.name)}
+                        </span>
+                        {` - ${capitalize(member.data.name)}`}
+                      </li>
+                    ))
+                );
+              })}
+            </ul>
+          </>
+        )}
+      </StyledContainer>
     </Popover>
   );
 }

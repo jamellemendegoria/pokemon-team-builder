@@ -1,8 +1,41 @@
 import React, { useState } from 'react';
+import styled from '@emotion/styled';
 import { Paper } from '@mui/material';
 
 import DefensivePopover from './popovers/DefensivePopover';
 import OffensivePopover from './popovers/OffensivePopover';
+
+/* STYLED COMPONENTS */
+
+const StyledContainer = styled(Paper)`
+  margin-top: 1em;
+  text-align: center;
+
+  & h2 {
+    margin-bottom: 1em;
+    padding-top: 1em;
+    font-size: 24px;
+  }
+`;
+
+const StyledChart = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+
+  & li {
+    position: relative;
+  }
+
+  & .type-label {
+    position: relative;
+    margin: 0 1em;
+    color: #fff;
+    text-transform: capitalize;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+`;
 
 function TypeChart(props) {
   const [anchorEl, setAnchorEl] = useState(Array(18).fill(false));
@@ -22,7 +55,7 @@ function TypeChart(props) {
   const chart = props.types.map((type, index) => {
     const typeChartDamageValue = props.damageValues[type].type_chart;
     return (
-      <li key={type} className="type">
+      <li key={type}>
         <div
           onMouseEnter={(e) => handlePopoverOpen(index, e)}
           onMouseLeave={() => handlePopoverClose(index)}
@@ -73,17 +106,10 @@ function TypeChart(props) {
   });
 
   return (
-    <Paper
-      className={
-        'type-chart-container' +
-        (props.name === 'Defensive'
-          ? ' defensive-type-chart'
-          : ' offensive-type-chart')
-      }
-    >
-      <h2 className="type-chart-heading">{`${props.name} Coverage`}</h2>
-      <ul className="type-chart">{chart}</ul>
-    </Paper>
+    <StyledContainer>
+      <h2>{`${props.name} Coverage`}</h2>
+      <StyledChart>{chart}</StyledChart>
+    </StyledContainer>
   );
 }
 

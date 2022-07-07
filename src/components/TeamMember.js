@@ -20,12 +20,29 @@ const StyledCard = styled(Card)`
   flex-direction: column;
   align-items: center;
   padding: 0.5em;
+
+  & .placeholder {
+    width: 125px;
+    height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+  }
+
+  & ul {
+    display: flex;
+    margin-top: 0.5em;
+  }
+
+  & ul li {
+    text-transform: capitalize;
+  }
 `;
 
 const StyledCardMedia = styled(CardMedia)`
   width: 125px;
   height: 125px;
-  border-radius: 50%;
 `;
 
 const StyledCardContent = styled(CardContent)`
@@ -99,7 +116,7 @@ function TeamMember(props) {
           //   alt={props.data.name}
           //   className={`team-member-img ${props.data.types[0].type.name}-bg`}
           // />
-          <div className="team-member-placeholder">?</div>
+          <div className="placeholder">?</div>
         )}
         <StyledAutocomplete
           inputValue={name}
@@ -111,14 +128,11 @@ function TeamMember(props) {
           )}
           onInputChange={handleChange}
         />
-        <ul className="team-member-types-list">
+        <ul>
           {props.data ? (
             <>
               {props.data.types.map((type) => (
-                <li
-                  key={type.slot}
-                  className={`team-member-type ${type.type.name}-text`}
-                >
+                <li key={type.slot} className={`${type.type.name}-text`}>
                   {type.type.name}
                   <span style={{ color: '#464646' }}>
                     {props.data.types.length === 2 &&
