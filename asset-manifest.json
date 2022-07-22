@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/pokemon-team-builder/static/css/main.c213f924.chunk.css",
-    "main.js": "/pokemon-team-builder/static/js/main.add61bdb.chunk.js",
-    "main.js.map": "/pokemon-team-builder/static/js/main.add61bdb.chunk.js.map",
-    "runtime-main.js": "/pokemon-team-builder/static/js/runtime-main.0bba15e3.js",
-    "runtime-main.js.map": "/pokemon-team-builder/static/js/runtime-main.0bba15e3.js.map",
-    "static/js/2.59a21011.chunk.js": "/pokemon-team-builder/static/js/2.59a21011.chunk.js",
-    "static/js/2.59a21011.chunk.js.map": "/pokemon-team-builder/static/js/2.59a21011.chunk.js.map",
-    "static/js/3.8e4bc127.chunk.js": "/pokemon-team-builder/static/js/3.8e4bc127.chunk.js",
-    "static/js/3.8e4bc127.chunk.js.map": "/pokemon-team-builder/static/js/3.8e4bc127.chunk.js.map",
+    "main.css": "/pokemon-team-builder/static/css/main.f51d2ded.chunk.css",
+    "main.js": "/pokemon-team-builder/static/js/main.090b2cb8.chunk.js",
+    "main.js.map": "/pokemon-team-builder/static/js/main.090b2cb8.chunk.js.map",
+    "runtime-main.js": "/pokemon-team-builder/static/js/runtime-main.915db17b.js",
+    "runtime-main.js.map": "/pokemon-team-builder/static/js/runtime-main.915db17b.js.map",
+    "static/js/2.c41ac87d.chunk.js": "/pokemon-team-builder/static/js/2.c41ac87d.chunk.js",
+    "static/js/2.c41ac87d.chunk.js.map": "/pokemon-team-builder/static/js/2.c41ac87d.chunk.js.map",
+    "static/js/3.dfd21228.chunk.js": "/pokemon-team-builder/static/js/3.dfd21228.chunk.js",
+    "static/js/3.dfd21228.chunk.js.map": "/pokemon-team-builder/static/js/3.dfd21228.chunk.js.map",
     "index.html": "/pokemon-team-builder/index.html",
-    "static/css/main.c213f924.chunk.css.map": "/pokemon-team-builder/static/css/main.c213f924.chunk.css.map",
-    "static/js/2.59a21011.chunk.js.LICENSE.txt": "/pokemon-team-builder/static/js/2.59a21011.chunk.js.LICENSE.txt"
+    "static/css/main.f51d2ded.chunk.css.map": "/pokemon-team-builder/static/css/main.f51d2ded.chunk.css.map",
+    "static/js/2.c41ac87d.chunk.js.LICENSE.txt": "/pokemon-team-builder/static/js/2.c41ac87d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.0bba15e3.js",
-    "static/js/2.59a21011.chunk.js",
-    "static/css/main.c213f924.chunk.css",
-    "static/js/main.add61bdb.chunk.js"
+    "static/js/runtime-main.915db17b.js",
+    "static/js/2.c41ac87d.chunk.js",
+    "static/css/main.f51d2ded.chunk.css",
+    "static/js/main.090b2cb8.chunk.js"
   ]
 }
