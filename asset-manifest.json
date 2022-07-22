@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/pokemon-team-builder/static/css/main.f51d2ded.chunk.css",
-    "main.js": "/pokemon-team-builder/static/js/main.090b2cb8.chunk.js",
-    "main.js.map": "/pokemon-team-builder/static/js/main.090b2cb8.chunk.js.map",
+    "main.css": "/pokemon-team-builder/static/css/main.851105ea.chunk.css",
+    "main.js": "/pokemon-team-builder/static/js/main.1f059adb.chunk.js",
+    "main.js.map": "/pokemon-team-builder/static/js/main.1f059adb.chunk.js.map",
     "runtime-main.js": "/pokemon-team-builder/static/js/runtime-main.915db17b.js",
     "runtime-main.js.map": "/pokemon-team-builder/static/js/runtime-main.915db17b.js.map",
-    "static/js/2.c41ac87d.chunk.js": "/pokemon-team-builder/static/js/2.c41ac87d.chunk.js",
-    "static/js/2.c41ac87d.chunk.js.map": "/pokemon-team-builder/static/js/2.c41ac87d.chunk.js.map",
+    "static/js/2.f1763571.chunk.js": "/pokemon-team-builder/static/js/2.f1763571.chunk.js",
+    "static/js/2.f1763571.chunk.js.map": "/pokemon-team-builder/static/js/2.f1763571.chunk.js.map",
     "static/js/3.dfd21228.chunk.js": "/pokemon-team-builder/static/js/3.dfd21228.chunk.js",
     "static/js/3.dfd21228.chunk.js.map": "/pokemon-team-builder/static/js/3.dfd21228.chunk.js.map",
     "index.html": "/pokemon-team-builder/index.html",
-    "static/css/main.f51d2ded.chunk.css.map": "/pokemon-team-builder/static/css/main.f51d2ded.chunk.css.map",
-    "static/js/2.c41ac87d.chunk.js.LICENSE.txt": "/pokemon-team-builder/static/js/2.c41ac87d.chunk.js.LICENSE.txt"
+    "static/css/main.851105ea.chunk.css.map": "/pokemon-team-builder/static/css/main.851105ea.chunk.css.map",
+    "static/js/2.f1763571.chunk.js.LICENSE.txt": "/pokemon-team-builder/static/js/2.f1763571.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.915db17b.js",
-    "static/js/2.c41ac87d.chunk.js",
-    "static/css/main.f51d2ded.chunk.css",
-    "static/js/main.090b2cb8.chunk.js"
+    "static/js/2.f1763571.chunk.js",
+    "static/css/main.851105ea.chunk.css",
+    "static/js/main.1f059adb.chunk.js"
   ]
 }
