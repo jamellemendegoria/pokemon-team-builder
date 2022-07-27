@@ -107,7 +107,7 @@ function TeamMember(props) {
         {props.data ? (
           <StyledCardMedia
             component="img"
-            image={props.data.sprites.other['official-artwork'].front_default}
+            image={props.data.img}
             alt={props.data.name}
           />
         ) : (
@@ -131,9 +131,9 @@ function TeamMember(props) {
         <ul>
           {props.data ? (
             <>
-              {props.data.types.map((type) => (
-                <li key={type.slot} className={`${type.type.name}-text`}>
-                  {type.type.name}
+              {props.data.types.map((type, index) => (
+                <li key={index} className={`${type}-text`}>
+                  {type}
                   <span style={{ color: '#464646' }}>
                     {props.data.types.length === 2 &&
                     props.data.types.indexOf(type) === 0

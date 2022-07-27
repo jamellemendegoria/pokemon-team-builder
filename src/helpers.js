@@ -1,7 +1,19 @@
 const movesWithHyphens = [
-  'baby-doll-eyes','double-edge', 'freeze-dry', 'lock-on', 'mud-slap',
-  'multi-attack', 'power-up-punch', 'self-destruct', 'soft-boiled', 'topsy-turvy',
-  'trick-or-treat', 'u-turn', 'wake-up-slap', 'will-o-wisp', 'x-scissor'
+  'baby-doll-eyes',
+  'double-edge',
+  'freeze-dry',
+  'lock-on',
+  'mud-slap',
+  'multi-attack',
+  'power-up-punch',
+  'self-destruct',
+  'soft-boiled',
+  'topsy-turvy',
+  'trick-or-treat',
+  'u-turn',
+  'wake-up-slap',
+  'will-o-wisp',
+  'x-scissor',
 ];
 
 function capitalize(str) {
@@ -9,7 +21,7 @@ function capitalize(str) {
 }
 function capitalizeAll(str) {
   const words = str.split(/\s/);
-  const capitalizedWords = words.map(word => capitalize(word));
+  const capitalizedWords = words.map((word) => capitalize(word));
   return capitalizedWords.join(' ');
 }
 function removeHyphens(str) {
@@ -22,8 +34,12 @@ function formatMove(move) {
     // If move name is supposed to include hyphens
     if (movesWithHyphens.includes(move)) {
       // These move names only have one hyphen
-      formattedMove = (move === 'baby-doll-eyes' || move === 'power-up-punch' || move === 'wake-up-slap') ?
-      formattedMove.replace(' ', '-') : formattedMove.replaceAll(' ', '-');
+      formattedMove =
+        move === 'baby-doll-eyes' ||
+        move === 'power-up-punch' ||
+        move === 'wake-up-slap'
+          ? formattedMove.replace(' ', '-')
+          : formattedMove.replaceAll(' ', '-');
     }
   } else {
     formattedMove = capitalize(move);
@@ -44,11 +60,11 @@ function formatPokemon(pokemon) {
   return formattedPokemon;
 }
 function formatAllMoves(moves) {
-  const formattedMoves = moves.map(move => formatMove(move.move.name)).sort();
+  const formattedMoves = moves.map((move) => formatMove(move)).sort();
   return formattedMoves;
 }
 function formatAllPokemon(pokemonList) {
-  const formattedList = pokemonList.map(pokemon => formatPokemon(pokemon));
+  const formattedList = pokemonList.map((pokemon) => formatPokemon(pokemon));
   return formattedList;
 }
 function removeFormatting(str) {
@@ -62,7 +78,7 @@ function removeFormatting(str) {
     if (words[words.length - 1] === '') {
       words.pop();
     }
-    const lowercasedWords = words.map(word => word.toLowerCase());
+    const lowercasedWords = words.map((word) => word.toLowerCase());
     revertedStr = lowercasedWords.join('-');
   } else {
     revertedStr = str.toLowerCase();
@@ -70,4 +86,11 @@ function removeFormatting(str) {
   return revertedStr;
 }
 
-export { capitalize, formatMove, formatPokemon, formatAllMoves, formatAllPokemon, removeFormatting };
+export {
+  capitalize,
+  formatMove,
+  formatPokemon,
+  formatAllMoves,
+  formatAllPokemon,
+  removeFormatting,
+};
