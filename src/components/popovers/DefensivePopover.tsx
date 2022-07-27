@@ -1,8 +1,17 @@
-import React from 'react';
 import styled from '@emotion/styled';
 import { Popover } from '@mui/material';
 
 import { capitalize } from '../../helpers';
+import { Pokemon } from '../../types';
+
+interface DefensivePopoverProps {
+  name: string;
+  isVisible: boolean;
+  team: Pokemon[];
+  damageValues: number[];
+  anchorEl: any;
+  onClose: any;
+}
 
 /* STYLED COMPONENTS */
 const StyledContainer = styled.div`
@@ -14,28 +23,35 @@ const StyledContainer = styled.div`
   }
 `;
 
-function DefensivePopover(props) {
-  function setDamageValueClass(value) {
-    const valueClass =
-      value > 0 && value < 1
-        ? 'positive bold'
-        : value > 1
-        ? 'negative bold'
-        : value === 0
-        ? 'no-damage bold'
-        : '';
-    return valueClass;
-  }
+const setDamageValueClass = (value: number) => {
+  const valueClass =
+    value > 0 && value < 1
+      ? 'positive bold'
+      : value > 1
+      ? 'negative bold'
+      : value === 0
+      ? 'no-damage bold'
+      : '';
+  return valueClass;
+};
 
+const DefensivePopover = ({
+  name,
+  isVisible,
+  team,
+  damageValues,
+  anchorEl,
+  onClose,
+}: DefensivePopoverProps) => {
   return (
     <Popover
       id="mouse-over-popover"
       sx={{
         pointerEvents: 'none',
       }}
-      open={props.isVisible}
-      anchorEl={props.anchorEl}
-      onClose={props.onClose}
+      open={isVisible}
+      anchorEl={anchorEl}
+      onClose={onClose}
       anchorOrigin={{
         vertical: 'bottom',
         horizontal: 'center',
@@ -47,14 +63,14 @@ function DefensivePopover(props) {
       disableRestoreFocus
     >
       <StyledContainer>
-        {props.team.every((member) => !member.data) ? (
+        {team.every((member) => !member.data) ? (
           <p>Please select a Pokémon.</p>
         ) : (
           <>
-            <h3 className={`${props.name}-text`}>{capitalize(props.name)}</h3>
+            <h3 className={`${name}-text`}>{capitalize(name)}</h3>
             <ul>
-              {props.team.map((member, index) => {
-                const damageValue = props.damageValues[index];
+              {team.map((member, index) => {
+                const damageValue = damageValues[index];
                 return (
                   member.data && (
                     <li key={index}>
@@ -72,6 +88,6 @@ function DefensivePopover(props) {
       </StyledContainer>
     </Popover>
   );
-}
+};
 
 export default DefensivePopover;

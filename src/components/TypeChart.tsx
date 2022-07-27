@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import { Paper } from '@mui/material';
 
 import DefensivePopover from './popovers/DefensivePopover';
 import OffensivePopover from './popovers/OffensivePopover';
+import { DamageValues, Pokemon } from '../types';
+
+interface TypeChartProps {
+  name: string;
+  types: string[];
+  damageValues: DamageValues;
+  team: Pokemon[];
+}
 
 /* STYLED COMPONENTS */
 
@@ -37,23 +45,26 @@ const StyledChart = styled.ul`
   }
 `;
 
-function TypeChart(props) {
+const TypeChart = ({ name, types, damageValues, team }: TypeChartProps) => {
   const [anchorEl, setAnchorEl] = useState(Array(18).fill(false));
 
-  const handlePopoverOpen = (index, event) => {
+  const handlePopoverOpen = (index: number, event: any) => {
     let temp = [...anchorEl];
     temp[index] = event.target;
     setAnchorEl(temp);
   };
 
-  const handlePopoverClose = (index) => {
+  const handlePopoverClose = (index: number) => {
     let temp = [...anchorEl];
     temp[index] = null;
     setAnchorEl(temp);
   };
 
-  const chart = props.types.map((type, index) => {
-    const typeChartDamageValue = props.damageValues[type].type_chart;
+  const chart = types.map((type, index) => {
+    const typeChartDamageValue =
+      name === 'Defensive'
+        ? damageValues.defensive[type].type_chart
+        : damageValues.offensive[type].type_chart;
     return (
       <li key={type}>
         <div
@@ -67,22 +78,20 @@ function TypeChart(props) {
         >
           {type}
         </div>
-        {props.name === 'Defensive' ? (
+        {name === 'Defensive' ? (
           <DefensivePopover
             name={type}
-            index={index}
             isVisible={Boolean(anchorEl[index])}
-            team={props.team}
-            damageValues={props.damageValues[type].popover}
+            team={team}
+            damageValues={damageValues.defensive[type].popover}
             anchorEl={anchorEl[index]}
             onClose={() => handlePopoverClose(index)}
           />
         ) : (
           <OffensivePopover
             name={type}
-            index={index}
             isVisible={Boolean(anchorEl[index])}
-            team={props.team}
+            team={team}
             anchorEl={anchorEl[index]}
             onClose={() => handlePopoverClose(index)}
           />
@@ -107,10 +116,10 @@ function TypeChart(props) {
 
   return (
     <StyledContainer>
-      <h2>{`${props.name} Coverage`}</h2>
+      <h2>{`${name} Coverage`}</h2>
       <StyledChart>{chart}</StyledChart>
     </StyledContainer>
   );
-}
+};
 
 export default TypeChart;

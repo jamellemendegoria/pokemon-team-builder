@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import {
   Card,
@@ -12,6 +12,15 @@ import {
 } from '@mui/material';
 
 import { formatAllMoves, formatAllPokemon, removeFormatting } from '../helpers';
+import { PokemonData } from '../types';
+
+interface TeamMemberProps {
+  index: number;
+  data: PokemonData | null;
+  pokemonList: string[];
+  onTeamChange: (member: string, index: number) => void;
+  onMoveChange: (move: string, teamIndex: number, moveIndex: number) => void;
+}
 
 /* STYLED COMPONENTS */
 
@@ -70,16 +79,25 @@ const StyledButton = styled(Button)`
   }
 `;
 
-function TeamMember(props) {
+const TeamMember = ({
+  index,
+  data,
+  pokemonList,
+  onTeamChange,
+  onMoveChange,
+}: TeamMemberProps) => {
   const [name, setName] = useState(
-    props.data
-      ? props.data.name.charAt(0).toUpperCase() + props.data.name.slice(1)
-      : ''
+    data ? data.name.charAt(0).toUpperCase() + data.name.slice(1) : ''
   );
   const [isShowingMoves, setIsShowingMoves] = useState(false);
   const [moves, setMoves] = useState(Array(4).fill(''));
 
-  function handleChange(e, value) {
+  const MUICardMediaProps = {
+    component: 'img',
+    alt: data?.name,
+  };
+
+  function handleChange(e: any, value: string) {
     setName(value);
     // Resets moves
     let temp = [...moves];
@@ -87,14 +105,14 @@ function TeamMember(props) {
       temp[i] = '';
     }
     setMoves(temp);
-    props.onTeamChange(removeFormatting(value), props.index);
+    onTeamChange(removeFormatting(value), index);
   }
 
-  function handleMoveChange(index, e, value) {
+  function handleMoveChange(index: number, e: any, value: string) {
     let tempMoves = [...moves];
     tempMoves[index] = value;
     setMoves(tempMoves);
-    props.onMoveChange(removeFormatting(value), props.index, index);
+    onMoveChange(removeFormatting(value), index, index);
   }
 
   function handleClick() {
@@ -104,12 +122,8 @@ function TeamMember(props) {
   return (
     <li>
       <StyledCard>
-        {props.data ? (
-          <StyledCardMedia
-            component="img"
-            image={props.data.img}
-            alt={props.data.name}
-          />
+        {data ? (
+          <StyledCardMedia image={data.img} {...MUICardMediaProps} />
         ) : (
           // <img
           //   src={props.data.sprites.other['official-artwork'].front_default}
@@ -122,21 +136,20 @@ function TeamMember(props) {
           inputValue={name}
           fullWidth
           size="small"
-          options={formatAllPokemon(props.pokemonList)}
+          options={formatAllPokemon(pokemonList)}
           renderInput={(params) => (
             <TextField {...params} label="Pokémon name..." />
           )}
           onInputChange={handleChange}
         />
         <ul>
-          {props.data ? (
+          {data ? (
             <>
-              {props.data.types.map((type, index) => (
+              {data.types.map((type, index) => (
                 <li key={index} className={`${type}-text`}>
                   {type}
                   <span style={{ color: '#464646' }}>
-                    {props.data.types.length === 2 &&
-                    props.data.types.indexOf(type) === 0
+                    {data.types.length === 2 && data.types.indexOf(type) === 0
                       ? '/'
                       : ''}
                   </span>
@@ -150,7 +163,7 @@ function TeamMember(props) {
         <CardActions>
           <StyledButton
             variant="contained"
-            disabled={!props.data}
+            disabled={!data}
             onClick={handleClick}
           >
             {isShowingMoves ? 'Hide' : 'Moves'}
@@ -165,10 +178,10 @@ function TeamMember(props) {
                 fullWidth
                 size="small"
                 options={
-                  props.data
-                    ? formatAllMoves(props.data.moves).filter(
+                  data
+                    ? formatAllMoves(data.moves).filter(
                         // removes moves already selected
-                        (move) => !moves.includes(move)
+                        (move: string) => !moves.includes(move)
                       )
                     : []
                 }
@@ -183,6 +196,6 @@ function TeamMember(props) {
       </StyledCard>
     </li>
   );
-}
+};
 
 export default TeamMember;

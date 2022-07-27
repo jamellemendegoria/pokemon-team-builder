@@ -1,8 +1,16 @@
-import React from 'react';
 import styled from '@emotion/styled';
 import { Popover } from '@mui/material';
 
 import { capitalize, formatMove } from '../../helpers';
+import { Pokemon } from '../../types';
+
+interface OffensivePopoverProps {
+  name: string;
+  isVisible: boolean;
+  team: Pokemon[];
+  anchorEl: any;
+  onClose: any;
+}
 
 /* STYLED COMPONENTS */
 const StyledContainer = styled.div`
@@ -14,16 +22,22 @@ const StyledContainer = styled.div`
   }
 `;
 
-function OffensivePopover(props) {
+const OffensivePopover = ({
+  name,
+  isVisible,
+  team,
+  anchorEl,
+  onClose,
+}: OffensivePopoverProps) => {
   return (
     <Popover
       id="mouse-over-popover"
       sx={{
         pointerEvents: 'none',
       }}
-      open={props.isVisible}
-      anchorEl={props.anchorEl}
-      onClose={props.onClose}
+      open={isVisible}
+      anchorEl={anchorEl}
+      onClose={onClose}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'center',
@@ -35,18 +49,16 @@ function OffensivePopover(props) {
       disableRestoreFocus
     >
       <StyledContainer>
-        {props.team.every((member) => !member.data) ? (
+        {team.every((member) => !member.data) ? (
           <p>Please select a Pokémon.</p>
         ) : (
           <>
             <h3>
               {`Super effective against `}
-              <span className={`${props.name}-text`}>
-                {capitalize(props.name)}
-              </span>
+              <span className={`${name}-text`}>{capitalize(name)}</span>
             </h3>
             <ul>
-              {props.team.map((member, teamIndex) => {
+              {team.map((member, teamIndex) => {
                 return (
                   member.data &&
                   member.moves
@@ -54,14 +66,14 @@ function OffensivePopover(props) {
                       (move) =>
                         move.data &&
                         move.damage &&
-                        move.damage.hasOwnProperty(props.name)
+                        move.damage.hasOwnProperty(name)
                     )
                     .map((move, moveIndex) => (
                       <li key={`member-${teamIndex}-move-${moveIndex}`}>
-                        <span className={`${move.data.type.name}-text bold`}>
-                          {formatMove(move.data.name)}
+                        <span className={`${move.data?.type}-text bold`}>
+                          {formatMove(move.data?.name)}
                         </span>
-                        {` - ${capitalize(member.data.name)}`}
+                        {` - ${capitalize(member.data?.name)}`}
                       </li>
                     ))
                 );
@@ -72,6 +84,6 @@ function OffensivePopover(props) {
       </StyledContainer>
     </Popover>
   );
-}
+};
 
 export default OffensivePopover;
