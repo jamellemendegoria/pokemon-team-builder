@@ -128,7 +128,6 @@ const App = () => {
   }, []);
 
   const calculateDefensiveDamage = (teamValue: Pokemon[]) => {
-    let tempTeam = [...team];
     let tempDamageValues = { ...damageValues };
     teamValue.forEach((member, index) => {
       if (member.data && !member.checked) {
@@ -197,13 +196,11 @@ const App = () => {
       }
     });
     setDamageValues(tempDamageValues);
-    setTeam(tempTeam);
   };
 
   const resetDefensiveDamage = (index: number) => {
-    let tempTeam = [...team];
     let tempDamageValues = { ...damageValues };
-    const member = tempTeam[index];
+    const member = team[index];
 
     // Reset type chart damage values
     for (const damagingType in member.damage) {
@@ -241,7 +238,6 @@ const App = () => {
       move.checked = false;
     });
     setDamageValues(tempDamageValues);
-    setTeam(tempTeam);
   };
 
   const calculateOffensiveDamage = (teamValue: Pokemon[]) => {
@@ -304,7 +300,6 @@ const App = () => {
       fetch(`https://pokeapi.co/api/v2/pokemon/${found}`)
         .then((res) => res.json())
         .then((result) => {
-          console.log(result);
           temp[index].data = {
             name: result.name,
             img: result.sprites.other['official-artwork'].front_default,
